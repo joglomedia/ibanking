@@ -380,6 +380,8 @@ class HttpRequest
 
 		// parse response
 		$this->parseResponse();
+
+        return $this;
 	}
 
 	/**

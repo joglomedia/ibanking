@@ -2,7 +2,7 @@
     "name": "joglomedia/ibank",
     "type": "library",
     "description": "Internet Banking PHP 5.6+ library",
-    "keywords": ["ibank", "internet banking", "cek mutasi", "payment gateway"],
+    "keywords": ["ibank", "internet banking", "bca", "bni", "mandiri", "cek mutasi", "payment gateway"],
     "homepage": "https://github.com/joglomedia/ibank",
     "license": "GPL-2",
     "authors": [

@@ -18,7 +18,7 @@ Add _ibank_ library in to your composer.json or create a new composer.json file:
 ```js
 {
     "require": {
-        "joglomedia\ibank": "dev-master"
+        "joglomedia/ibank": "dev-master"
     }
 }
 ```

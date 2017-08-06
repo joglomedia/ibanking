@@ -50,7 +50,7 @@ abstract class AbstractIBParser implements IBParserInterface
 		
 		// return true if transaction exists
 		foreach ($haystack as $item) {
-			if ($item[$key] == $needle) {
+			if ($item[$key] == $needle || FALSE !== strstr($item[$key], $needle)) {
 				return $item;
 			}
 		}
