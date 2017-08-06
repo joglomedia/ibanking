@@ -12,7 +12,7 @@ namespace IBank\IBParser;
 use IBank\Utils\HttpRequest as HttpRequest;
 use IBank\Utils\HttpHelper as HttpHelper;
 use IBank\Utils\HtmlParser as HtmlParser;
-use IBank\Utils\Functions as Function;
+use IBank\Utils\Function as Function;
 
 class SampleBankParser extends AbstractIBParser
 {
@@ -51,12 +51,12 @@ class SampleBankParser extends AbstractIBParser
 	public function login($username='', $password='', $account='', $corpid='')
 	{
 		// prevent multiple logged in
-		if($this->loggedin) {
+		if ($this->loggedin) {
 			return true;
 		}
 
 		// overwrite credentials
-		if ( $username != '' && $password !='' ) {
+		if ($username != '' && $password != '') {
 			$this->setCredentials($username, $password, $account, $corpid);
 		}
 
@@ -64,7 +64,7 @@ class SampleBankParser extends AbstractIBParser
 		$this->loggedin = true;
 		
 		// if logged in, add response cookie to _session (if required)
-		if($this->loggedin) {
+		if ($this->loggedin) {
 			$this->_session = $this->http->getResponseCookie();
 		}
 
@@ -77,7 +77,7 @@ class SampleBankParser extends AbstractIBParser
 		$balance = 0;
 		
 		// retry login if logged in status is false
-		if(! $this->loggedin) {
+		if (! $this->loggedin) {
 			$this->login();
 		}
 
@@ -94,7 +94,7 @@ class SampleBankParser extends AbstractIBParser
 	public function getTransactions($start = '1/1/2017', $end = '30/1/2017', $type = '%')
 	{
 		// retry login if logged in status false
-		if(! $this->loggedin) {
+		if (! $this->loggedin) {
 			$this->login();
 		}
 
@@ -104,11 +104,6 @@ class SampleBankParser extends AbstractIBParser
 		// TO DO: get transactions data from page scrapping, api, etc
 
 		return $transactions;
-	}
-	
-	public function checkTransaction($transaction)
-	{
-		// TO DO: check single transaction data
 	}
 	
 	public function logout()

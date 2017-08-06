@@ -43,9 +43,14 @@ class IBank
 		return $this->ib->getTransactions($start, $end, $type);
 	}
 
-	public function checkTransaction($transaction)
+	/**
+	 * Check if transaction (value) is exists
+	 *
+	 * return mixed
+	 */
+	public function checkTransaction($needle, $key, $haystack)
 	{
-		return $this->ib->checkTransaction($transaction);
+		return $this->ib->checkTransaction($needle, $key, $haystack);
 	}
 
 	/**
@@ -55,7 +60,7 @@ class IBank
 	 */
 	public function isLoggedin($session = false)
 	{
-		if($session) {
+		if ($session) {
 			return !empty($this->ib->_session) ? $this->ib->_session : false;
 		} else {
 			return $this->ib->loggedin;
@@ -68,7 +73,7 @@ class IBank
 	 */
 	public function setLoggedin($session = '')
 	{
-		if($session != '') {
+		if ($session != '') {
 			$this->ib->_session = $session;
 			$this->ib->loggedin = true;
 		}

@@ -21,7 +21,7 @@ class HtmlParser
 	
 	public function __construct($html = '')
 	{
-		if($html != '') {
+		if ($html != '') {
 			$this->initParser($html);
 		}
 	}
@@ -29,11 +29,14 @@ class HtmlParser
 	public function initParser($html = '')
 	{
 		$html = ! empty($this->html) ? $this->html : $html;
-		
+
 		$previous_value = libxml_use_internal_errors(true);
+
 		$this->dom = new \DomDocument();
 		$this->dom->loadHTML($html);
+
 		$this->xpath = new \DomXpath($this->dom);
+
 		libxml_clear_errors();
 		libxml_use_internal_errors($previous_value);
 		
@@ -52,8 +55,8 @@ class HtmlParser
 	{
 		$html = '';
 
-		if(! is_null($elements)) {
-			if(count($elements) > 0) {
+		if (! is_null($elements)) {
+			if (count($elements) > 0) {
 				foreach($elements as $element) {
 					$html .= $this->dom->saveXML($element) . "\r\n";
 				}
@@ -73,7 +76,7 @@ class HtmlParser
 	public function setHTMLFile($file = '')
 	{
 		try {
-			if(file_exists($file)) {
+			if (file_exists($file)) {
 				$this->html = file_get_contents($file);
 			} else {
 				throw new Exception('setHTMLFile failed, file does not exist.');

@@ -39,4 +39,22 @@ abstract class AbstractIBParser implements IBParserInterface
 		];
 	}
 
+	/**
+	 * Searched transaction data $needle, looked transactions array $haystack
+	 */
+	public function checkTransaction($needle, $key, $haystack)
+	{
+		if (! is_array($haystack)) {
+			return false;
+		}
+		
+		// return true if transaction exists
+		foreach ($haystack as $item) {
+			if ($item[$key] == $needle) {
+				return $item;
+			}
+		}
+
+		return false;
+	}
 }

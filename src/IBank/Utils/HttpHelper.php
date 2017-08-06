@@ -58,7 +58,8 @@ class HttpHelper
 	 * @param string $mode the transformation mode. either encode or decode
 	 * @return string $text transformed by the given $mode
 	 */
-	public static function transformText($text, $mode='encode') {
+	public static function transformText($text, $mode='encode')
+	{
 		$mode = ucfirst($mode);
 		return self::{"safe$mode"}($text);
 	}
@@ -93,7 +94,7 @@ class HttpHelper
 			}
 
 			// sort k=>v format
-			foreach($__cookies as $v) {
+			foreach ($__cookies as $v) {
 				foreach ($v as $k1 => $v1) {
 					$cookies[$k1] = $v1;
 				}

@@ -9,16 +9,35 @@
  */
 namespace IBank\Utils;
 
-class Functions
+class Function
 {
-    public static function random()
+    public static function generateRandom()
 	{
-		return (float)rand()/(float)getrandmax();
+		return (float)mt_rand()/(float)mt_getrandmax();
+	}
+
+	public static function generateRandomString($length = 8, $charset = '') {
+		if ($charset == '') {
+			$charset = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		}
+
+		$charsetLength = strlen($charset);
+		$randomString = '';
+
+		for ($i = 0; $i < $length; $i++) {
+			//$r = mt_rand()/mt_getrandmax();
+			//$k = (int)floor($r * $b);
+			//$randomString .= $charset[$k];
+		    $randomString .= $charset[mt_rand(0, $charsetLength - 1)];
+		}
+
+		return $randomString;
 	}
 	
 	public static function encodeURIComponent($str)
 	{
 		$revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
+
 		return strtr(rawurlencode($str), $revert);
 	}
 	

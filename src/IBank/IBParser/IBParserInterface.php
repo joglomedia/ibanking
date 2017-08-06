@@ -24,5 +24,5 @@ interface IBParserInterface
 	
 	public function getTransactions($start, $end, $type);
 	
-	public function checkTransaction($transaction);
+	public function checkTransaction($needle, $key, $haystack);
 }

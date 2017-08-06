@@ -13,7 +13,7 @@ error_reporting(E_ALL);
 include('../src/IBank/Utils/HttpHelper.php');
 include('../src/IBank/Utils/HttpRequest.php');
 include('../src/IBank/Utils/HtmlParser.php');
-include('../src/IBank/Utils/Functions.php');
+include('../src/IBank/Utils/Function.php');
 include('../src/IBank/IBParser/IBParserInterface.php');
 include('../src/IBank/IBParser/AbstractIBParser.php');
 include('../src/IBank/IBParser/SampleBankParser.php');
