@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the IBank library.
+ * This file is part of the IBanking library.
  *
  * (c) Edi Septriyanto <me@masedi.net>
  *
@@ -10,17 +10,17 @@
 error_reporting(E_ALL);
 
 //include('vendor/autoload.php');
-include('../src/IBank/Utils/HttpHelper.php');
-include('../src/IBank/Utils/HttpRequest.php');
-include('../src/IBank/Utils/HtmlParser.php');
-include('../src/IBank/Utils/Function.php');
-include('../src/IBank/IBParser/IBParserInterface.php');
-include('../src/IBank/IBParser/AbstractIBParser.php');
-include('../src/IBank/IBParser/SampleBankParser.php');
-include('../src/IBank/IBank.php');
+include('../src/IBanking/Utils/HttpHelper.php');
+include('../src/IBanking/Utils/HttpRequest.php');
+include('../src/IBanking/Utils/HtmlParser.php');
+include('../src/IBanking/Utils/Function.php');
+include('../src/IBanking/IBParser/IBParserInterface.php');
+include('../src/IBanking/IBParser/AbstractIBParser.php');
+include('../src/IBanking/IBParser/SampleBankParser.php');
+include('../src/IBanking/IBanking.php');
 
-use IBank\IBank as IBank;
-use IBank\IBParser\SampleBankParser as SBParser;
+use IBanking\IBanking as IBanking;
+use IBanking\IBParser\SampleBankParser as SBParser;
 
 $credentials = [
 	'corpid'	=> '',
@@ -29,7 +29,7 @@ $credentials = [
 	'account'	=> '',
 ];
 
-$ibank = new IBank(new SBParser, $credentials);
+$ibank = new IBanking(new SBParser, $credentials);
 
 $loggedin = $ibank->login();
 

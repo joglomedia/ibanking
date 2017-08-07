@@ -1,9 +1,9 @@
 {
-    "name": "joglomedia/ibank",
+    "name": "joglomedia/ibanking",
     "type": "library",
     "description": "Internet Banking PHP 5.6+ library",
-    "keywords": ["ibank", "internet banking", "bca", "bni", "mandiri", "cek mutasi", "payment gateway"],
-    "homepage": "https://github.com/joglomedia/ibank",
+    "keywords": ["ibank", "ibanking", "internet banking", "bca", "bni", "mandiri", "cek mutasi", "payment gateway"],
+    "homepage": "https://github.com/joglomedia/ibanking",
     "license": "GPL-2",
     "authors": [
         {
@@ -14,8 +14,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/joglomedia/ibank/issues",
-        "source": "https://github.com/joglomedia/ibank"
+        "issues": "https://github.com/joglomedia/ibanking/issues",
+        "source": "https://github.com/joglomedia/ibanking"
     },
     "minimum-stability": "dev",
     "require": {
@@ -28,7 +28,7 @@
     "suggest": {
     },
     "autoload": {
-        "psr-0": { "IBank": "src/" }
+        "psr-0": { "IBanking": "src/" }
     },
 	"extra": {
         "branch-alias": {

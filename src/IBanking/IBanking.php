@@ -1,17 +1,17 @@
 <?php
 /**
- * This file is part of the IBank library.
+ * This file is part of the IBanking library.
  *
  * (c) Edi Septriyanto <me@masedi.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace IBank;
+namespace IBanking;
 
-use IBank\IBParser\IBParserInterface;
+use IBanking\IBParser\IBParserInterface;
 
-class IBank
+class IBanking
 {
 	const VERSION = "1.0.0-dev";
 
@@ -66,7 +66,7 @@ class IBank
 			return $this->ib->loggedin;
 		}
 	}
-	
+
 	/**
 	 * Set logged in cookie session
 	 * re-use cookie if not yet expired
@@ -76,6 +76,10 @@ class IBank
 		if ($session != '') {
 			$this->ib->_session = $session;
 			$this->ib->loggedin = true;
+
+			return true;
 		}
+
+		return false;
 	}
 }

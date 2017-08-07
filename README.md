@@ -1,7 +1,7 @@
-IBank
+IBanking - Internet Banking
 =====
 
-Internet Banking client wrapper, check transaction (cek mutasi) online using PHP script.
+Internet Banking client wrapper, useful to check internet banking transaction (cek mutasi online) using PHP script.
 
 ## Documentation
 
@@ -18,7 +18,7 @@ Add _ibank_ library in to your composer.json or create a new composer.json file:
 ```js
 {
     "require": {
-        "joglomedia/ibank": "dev-master"
+        "joglomedia/ibanking": "dev-master"
     }
 }
 ```
@@ -47,8 +47,8 @@ The tests directory contains an example bootstrap file.
 <?php
 namespace MasEDI\CekMutasiDemo
 
-use IBank\IBank as IBank;
-use IBank\IBParser\SampleBankParser as SBParser;
+use IBanking\IBanking as IBanking;
+use IBanking\IBParser\SampleBankParser as SBParser;
 
 $credentials = [
 	'corpid'	=> '',
@@ -57,7 +57,7 @@ $credentials = [
 	'account'	=> 'nomor_rekening',
 ];
 
-$ibank = new IBank(new SBParser, $credentials);
+$ibank = new IBanking(new SBParser, $credentials);
 
 $loggedin = $ibank->login();
 

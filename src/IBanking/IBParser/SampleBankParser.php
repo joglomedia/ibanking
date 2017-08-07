@@ -1,18 +1,18 @@
 <?php
 /**
- * This file is part of the IBank library.
+ * This file is part of the IBanking library.
  *
  * (c) Edi Septriyanto <me@masedi.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace IBank\IBParser;
+namespace IBanking\IBParser;
 
-use IBank\Utils\HttpRequest as HttpRequest;
-use IBank\Utils\HttpHelper as HttpHelper;
-use IBank\Utils\HtmlParser as HtmlParser;
-use IBank\Utils\Function as Function;
+use IBanking\Utils\HttpRequest as HttpRequest;
+use IBanking\Utils\HttpHelper as HttpHelper;
+use IBanking\Utils\HtmlParser as HtmlParser;
+use IBanking\Utils\Function as Function;
 
 class SampleBankParser extends AbstractIBParser
 {
