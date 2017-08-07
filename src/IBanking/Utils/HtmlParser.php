@@ -79,7 +79,7 @@ class HtmlParser
 			if (file_exists($file)) {
 				$this->html = file_get_contents($file);
 			} else {
-				throw new \Exception('setHTMLFile failed, file does not exist.');
+				throw new \Exception('setHTMLFile ' . $file . ' failed, file does not exist.');
 			}
 		} catch(\Exception $e) {
 			echo 'Caught exception: ' .  $e->getMessage();
