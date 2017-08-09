@@ -87,23 +87,23 @@ class SampleBankParser extends AbstractIBParser
 	}
 	
 	/**
-	 * Get Transactions for date range from $start date to $end date, 
-	 * transaction type $type; % (all), credit, debit.
+	 * Get Statements for date range from $start date to $end date, 
+	 * statement type $type; % (all), credit, debit.
 	 * Date format d/m/Y
 	 */
-	public function getTransactions($start = '1/1/2017', $end = '30/1/2017', $type = '%')
+	public function getStatements($start = '1/1/2017', $end = '30/1/2017', $type = '%')
 	{
 		// retry login if logged in status false
 		if (! $this->loggedin) {
 			$this->login();
 		}
 
-		// transaction list saved as array
-		$transactions = [];
+		// statement list saved as array
+		$statements = [];
 
-		// TO DO: get transactions data from page scrapping, api, etc
+		// TO DO: get statements data from page scrapping, api, etc
 
-		return $transactions;
+		return $statements;
 	}
 	
 	public function logout()

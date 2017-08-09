@@ -38,19 +38,19 @@ class IBanking
 		return $this->ib->getBalance();
 	}
 
-	public function getTransactions($start, $end, $type = '%')
+	public function getStatements($start, $end, $type = '%')
 	{
-		return $this->ib->getTransactions($start, $end, $type);
+		return $this->ib->getStatements($start, $end, $type);
 	}
 
 	/**
-	 * Check if transaction (value) is exists
+	 * Check if statement (value) is exists
 	 *
 	 * return mixed
 	 */
-	public function checkTransaction($needle, $key, $haystack)
+	public function checkStatement($needle, $key, $haystack)
 	{
-		return $this->ib->checkTransaction($needle, $key, $haystack);
+		return $this->ib->checkStatement($needle, $key, $haystack);
 	}
 
 	/**

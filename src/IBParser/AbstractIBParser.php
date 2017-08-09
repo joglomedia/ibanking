@@ -23,7 +23,7 @@ abstract class AbstractIBParser implements IBParserInterface
 
 	protected $htmlp = null; // html parser instance.
 
-	protected $transactions = []; // account transactions / mutasi (array)
+	protected $statements = []; // account statements / mutasi (array)
 
 	public $loggedin = false; // logged in status (bool)
 
@@ -40,15 +40,15 @@ abstract class AbstractIBParser implements IBParserInterface
 	}
 
 	/**
-	 * Searched transaction data $needle, looked transactions array $haystack
+	 * Searched statement data $needle, looked statements array $haystack
 	 */
-	public function checkTransaction($needle, $key, $haystack)
+	public function checkStatement($needle, $key, $haystack)
 	{
 		if (! is_array($haystack)) {
 			return false;
 		}
 		
-		// return true if transaction exists
+		// return true if statement exists
 		foreach ($haystack as $item) {
 			if ($item[$key] == $needle || FALSE !== strstr($item[$key], $needle)) {
 				return $item;

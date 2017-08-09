@@ -22,7 +22,7 @@ interface IBParserInterface
 	
 	public function getBalance();
 	
-	public function getTransactions($start, $end, $type);
+	public function getStatements($start, $end, $type);
 	
-	public function checkTransaction($needle, $key, $haystack);
+	public function checkStatement($needle, $key, $haystack);
 }

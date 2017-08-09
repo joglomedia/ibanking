@@ -1,13 +1,13 @@
 IBanking - Internet Banking
 =====
 
-Internet Banking client wrapper, useful to check internet banking transaction (cek mutasi online) using PHP script.
+Internet Banking client wrapper, useful to check internet banking statements (cek mutasi online) using PHP script.
 
 ## Documentation
 
 The documentation is currently under construction.
 
-You can read here: https://ibank.masedi.net/
+You can read here: https://ibanking.masedi.net/
 
 ## Installation
 
@@ -52,7 +52,7 @@ use IBanking\IBParser\SampleBankParser as SBParser;
 
 $credentials = [
 	'corpid'	=> '',
-	'username'	=> 'namauser', 
+	'username'	=> 'namauser',
 	'password'	=> 'katasandi',
 	'account'	=> 'nomor_rekening',
 ];
@@ -68,7 +68,7 @@ $balance = $ibank->getBalance();
 var_dump($balance);
 echo("\r\n");
 
-$mutasi = $ibank->getTransactions('24/7/2017', '29/7/2017', 'credit');
+$mutasi = $ibank->getStatements('24/7/2017', '29/7/2017', 'credit');
 var_dump($mutasi);
 echo("\r\n");
 
