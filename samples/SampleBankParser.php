@@ -23,10 +23,10 @@ use IBanking\IBanking as IBanking;
 use IBanking\IBParser\SampleBankParser as SBParser;
 
 $credentials = [
-	'corpid'	=> '',
-	'username'	=> '', 
-	'password'	=> '',
-	'account'	=> '',
+    'corpid'   => '',
+    'username' => '', 
+    'password' => '',
+    'account'  => '',
 ];
 
 $ibank = new IBanking(new SBParser, $credentials);

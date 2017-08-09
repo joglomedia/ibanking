@@ -13,73 +13,102 @@ use IBanking\IBParser\IBParserInterface;
 
 class IBanking
 {
-	const VERSION = "1.0.0-dev";
+    /**
+     * IBanking version
+     *
+     * @const string
+     */
+    const VERSION = "1.0.0-dev";
 
-	protected $ib;
+    /**
+     * IBanking IBParser instance
+     *
+     * @var object
+     */
+    protected $ib;
 
-	public function __construct(IBParserInterface $ib, array $credentials = array())
-	{
-		$this->ib = $ib;
-		$this->ib->setCredentials($credentials['username'], $credentials['password'], $credentials['account'], $credentials['corpid']);
-	}
+    /**
+     * IBanking class constructor
+     *
+     * @param IBParserInterface $ib the current IBParser instance
+     * @param array $credentials
+     */
+    public function __construct(IBParserInterface $ib, Array $credentials = [])
+    {
+        $this->ib = $ib;
+        $this->ib->setCredential($credentials['username'], $credentials['password'], $credentials['account'], $credentials['corpid']);
+    }
 
-	public function login()
-	{
-		return $this->ib->login();
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function login()
+    {
+        return $this->ib->login();
+    }
 
-	public function logout()
-	{
-		$this->ib->logout();
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function logout()
+    {
+        $this->ib->logout();
+    }
 
-	public function getBalance()
-	{
-		return $this->ib->getBalance();
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getBalance()
+    {
+        return $this->ib->getBalance();
+    }
 
-	public function getStatements($start, $end, $type = '%')
-	{
-		return $this->ib->getStatements($start, $end, $type);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getStatements($start, $end, $type = '%')
+    {
+        return $this->ib->getStatements($start, $end, $type);
+    }
 
-	/**
-	 * Check if statement (value) is exists
-	 *
-	 * return mixed
-	 */
-	public function checkStatement($needle, $key, $haystack)
-	{
-		return $this->ib->checkStatement($needle, $key, $haystack);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function checkStatement($needle, $key, $haystack)
+    {
+        return $this->ib->checkStatement($needle, $key, $haystack);
+    }
 
-	/**
-	 * Check is logged in
-	 *
-	 * return mixed
-	 */
-	public function isLoggedin($session = false)
-	{
-		if ($session) {
-			return !empty($this->ib->_session) ? $this->ib->_session : false;
-		} else {
-			return $this->ib->loggedin;
-		}
-	}
+    /**
+     * Check logged in status
+     *
+     * @param bool $session
+     * @return mixed
+     */
+    public function isLoggedin($session = false)
+    {
+        if ($session) {
+            return (! empty($this->ib->_session)) ? $this->ib->_session : false;
+        } else {
+            return $this->ib->loggedin;
+        }
+    }
 
-	/**
-	 * Set logged in cookie session
-	 * re-use cookie if not yet expired
-	 */
-	public function setLoggedin($session = '')
-	{
-		if ($session != '') {
-			$this->ib->_session = $session;
-			$this->ib->loggedin = true;
+    /**
+     * Set logged in cookie session, re-use cookie if not yet expired
+     *
+     * @param string $session
+     * @return bool
+     */
+    public function setLoggedin($session = '')
+    {
+        if ($session != '') {
+            $this->ib->_session = $session;
+            $this->ib->loggedin = true;
 
-			return true;
-		}
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 }

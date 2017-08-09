@@ -16,7 +16,8 @@ class Function
 		return (float)mt_rand()/(float)mt_getrandmax();
 	}
 
-	public static function generateRandomString($length = 8, $charset = '') {
+	public static function generateRandomString($length = 8, $charset = '')
+	{
 		if ($charset == '') {
 			$charset = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		}

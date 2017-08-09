@@ -14,106 +14,128 @@ use IBanking\Utils\HttpHelper as HttpHelper;
 use IBanking\Utils\HtmlParser as HtmlParser;
 use IBanking\Utils\Function as Function;
 
+/**
+ * Sample IBParser class
+ */
 class SampleBankParser extends AbstractIBParser
 {
-	protected $host = 'ib.samplebank.co.id';
+    /**
+     * {@inheritdoc}
+     */
+    protected $host = 'ib.samplebank.co.id';
 
-	protected $headers = [];
+    /**
+     * {@inheritdoc}
+     */
+    protected $headers = [];
 
-	protected $options = [];
+    /**
+     * {@inheritdoc}
+     */
+    protected $options = [];
 
-	public function __construct()
-	{
-		// init request header (if required)
-		$this->headers = [
-			"connection: keep-alive",
-			"cache-control: no-cache",
-			"content-type: application/x-www-form-urlencoded"
-		];
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct()
+    {
+        // init request header (if required)
+        $this->headers = [
+            "connection: keep-alive",
+            "cache-control: no-cache",
+            "content-type: application/x-www-form-urlencoded"
+        ];
 
-		// init http request (curl) options
-		$this->options = [
-			CURLOPT_URL => '',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1
-		];
+        // init http request (curl) options
+        $this->options = [
+            CURLOPT_URL => '',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1
+        ];
 
-		// init http request object
-		$this->http = new HttpRequest();
+        // init http request object
+        $this->http = new HttpRequest();
 
-		// init html html parser object
-		$this->htmlp = new HtmlParser();
-	}
+        // init html html parser object
+        $this->htmlp = new HtmlParser();
+    }
 
-	public function login($username='', $password='', $account='', $corpid='')
-	{
-		// prevent multiple logged in
-		if ($this->loggedin) {
-			return true;
-		}
+    /**
+     * {@inheritdoc}
+     */
+    public function login($username = '', $password = '', $account = '', $corpid = '')
+    {
+        // prevent multiple logged in
+        if ($this->loggedin) {
+            return true;
+        }
 
-		// overwrite credentials
-		if ($username != '' && $password != '') {
-			$this->setCredentials($username, $password, $account, $corpid);
-		}
+        // overwrite credentials
+        if ($username != '' && $password != '') {
+            $this->setCredentials($username, $password, $account, $corpid);
+        }
 
- 		// TO DO: do login process, get cookie session / login status from IB host, api server, etc
-		$this->loggedin = true;
-		
-		// if logged in, add response cookie to _session (if required)
-		if ($this->loggedin) {
-			$this->_session = $this->http->getResponseCookie();
-		}
+         // TO DO: do login process, get cookie session / login status from IB host, api server, etc
+        $this->loggedin = true;
+        
+        // if logged in, add response cookie to _session (if required)
+        if ($this->loggedin) {
+            $this->_session = $this->http->getResponseCookie();
+        }
 
-		return $this->loggedin;
-	}
-	
-	public function getBalance()
-	{
-		// balance
-		$balance = 0;
-		
-		// retry login if logged in status is false
-		if (! $this->loggedin) {
-			$this->login();
-		}
+        return $this->loggedin;
+    }
 
-		// TO DO: get balance data from page scrapping, api, etc
+    /**
+     * {@inheritdoc}
+     */
+    public function logout()
+    {
+        // TO DO: do logout process, hit the logout page, clear session, etc
 
-		return (float)$balance;
-	}
-	
-	/**
-	 * Get Statements for date range from $start date to $end date, 
-	 * statement type $type; % (all), credit, debit.
-	 * Date format d/m/Y
-	 */
-	public function getStatements($start = '1/1/2017', $end = '30/1/2017', $type = '%')
-	{
-		// retry login if logged in status false
-		if (! $this->loggedin) {
-			$this->login();
-		}
+        // reset cookie session (if required)
+        $this->_session = '';
 
-		// statement list saved as array
-		$statements = [];
+        // reset logged in status
+        $this->loggedin = false;
+    }
 
-		// TO DO: get statements data from page scrapping, api, etc
+    /**
+     * {@inheritdoc}
+     */
+    public function getBalance()
+    {
+        // balance
+        $balance = 0;
+        
+        // retry login if logged in status is false
+        if (! $this->loggedin) {
+            $this->login();
+        }
 
-		return $statements;
-	}
-	
-	public function logout()
-	{
-		// TO DO: do logout process, hit the logout page, clear session, etc
+        // TO DO: get balance data from page scrapping, api, etc
 
-		// reset cookie session (if required)
-		$this->_session = '';
+        return (float)$balance;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getStatements($start = '1/1/2017', $end = '30/1/2017', $type = '%')
+    {
+        // retry login if logged in status false
+        if (! $this->loggedin) {
+            $this->login();
+        }
 
-		// reset logged in status
-		$this->loggedin = false;
-	}
+        // statement list saved as array
+        $statements = [];
+
+        // TO DO: get statements data from page scrapping, api, etc
+
+        return $statements;
+    }
 }
