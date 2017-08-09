@@ -28,7 +28,7 @@
     "suggest": {
     },
     "autoload": {
-        "psr-0": { "IBanking": "src/" }
+        "psr-4": { "IBanking\\": "src/" }
     },
 	"extra": {
         "branch-alias": {

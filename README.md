@@ -39,7 +39,7 @@ include('vendor/autoload.php');
 
 ## Basic Usage
 
-This library is using the PSR-0 standard: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md.
+This library is using the PSR-4 standard: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4.md.
 So you can use any autoloader which fits into this standard.
 The tests directory contains an example bootstrap file.
 
