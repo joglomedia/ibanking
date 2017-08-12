@@ -147,7 +147,7 @@ abstract class AbstractIBParser implements IBParserInterface
             if ($key == 'Credit' && $item[$key] == $needle) {
                 return $item;
             }
-            else if (strstr($item[$key], $needle) !== false) {
+            elseif (strstr($item[$key], $needle) !== false) {
                 return $item;
             }
         }

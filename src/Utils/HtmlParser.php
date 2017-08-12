@@ -11,6 +11,7 @@ namespace IBanking\Utils;
 
 use DomDocument;
 use DomXpath;
+use Exception;
 
 class HtmlParser
 {
@@ -96,10 +97,12 @@ class HtmlParser
         try {
             if (file_exists($file)) {
                 $this->html = file_get_contents($file);
-            } else {
-                throw new \Exception('setHTMLFile ' . $file . ' failed, file does not exist.');
             }
-        } catch(\Exception $e) {
+            else {
+                throw new Exception('setHTMLFile ' . $file . ' failed, file does not exist.');
+            }
+        }
+        catch (Exception $e) {
             echo 'Caught exception: ' .  $e->getMessage();
         }
 
@@ -131,7 +134,7 @@ class HtmlParser
 
         if (! is_null($elements)) {
             if (count($elements) > 0) {
-                foreach($elements as $element) {
+                foreach ($elements as $element) {
                     $html .= $this->dom->saveXML($element) . "\r\n";
                 }
             }
