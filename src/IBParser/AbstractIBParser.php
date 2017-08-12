@@ -10,9 +10,9 @@
 namespace IBanking\IBParser;
 
 use IBanking\IBParser\IBParserInterface;
-use IBanking\Utils\HttpRequest as HttpRequest;
-use IBanking\Utils\HttpHelper as HttpHelper;
-use IBanking\Utils\HtmlParser as HtmlParser;
+use IBanking\Utils\HttpRequest;
+use IBanking\Utils\HttpHelper;
+use IBanking\Utils\HtmlParser;
 
 /**
  * IBParser abstract
@@ -109,7 +109,7 @@ abstract class AbstractIBParser implements IBParserInterface
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
+            CURLOPT_TIMEOUT => 60,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1
         ];
 
@@ -141,10 +141,13 @@ abstract class AbstractIBParser implements IBParserInterface
         if (! is_array($haystack)) {
             return [];
         }
-        
-        // return array of statement if exists
+
+        // Return array of statement if exists.
         foreach ($haystack as $item) {
-            if ($item[$key] == $needle || false !== strstr($item[$key], $needle)) {
+            if ($key == 'Credit' && $item[$key] == $needle) {
+                return $item;
+            }
+            else if (strstr($item[$key], $needle) !== false) {
                 return $item;
             }
         }

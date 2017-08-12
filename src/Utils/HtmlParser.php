@@ -67,7 +67,7 @@ class HtmlParser
 
         libxml_clear_errors();
         libxml_use_internal_errors($previous_value);
-        
+
         // make chainable
         return $this;
     }
@@ -81,7 +81,7 @@ class HtmlParser
     public function setHTML($html = '')
     {
         $this->html = $html;
-        
+
         return $this;
     }
 
@@ -91,7 +91,7 @@ class HtmlParser
      * @param string $file
      * @return $this
      */
-    public function setHTMLFile($file = '')
+    public function setHTMLFile($file = 'php://input')
     {
         try {
             if (file_exists($file)) {
@@ -102,7 +102,7 @@ class HtmlParser
         } catch(\Exception $e) {
             echo 'Caught exception: ' .  $e->getMessage();
         }
-        
+
         return $this;
     }
 
@@ -136,7 +136,7 @@ class HtmlParser
                 }
             }
         }
-        
+
         return $html;
     }
 }

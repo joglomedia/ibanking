@@ -99,10 +99,10 @@ class HttpRequest
      */
     public function __construct($url = '', $method = 'GET')
     {
-        // initialize request setting
+        // Initialize request setting.
         $this->setRequestSetting(['url' => $url, 'method' => $method]);
-        
-        // initialize default curl options
+
+        // Initialize default curl options.
         $this->options = [
             CURLOPT_URL => $this->requestSetting['url'],
             CURLOPT_RETURNTRANSFER => true,
@@ -111,8 +111,8 @@ class HttpRequest
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1
         ];
-        
-        // initialize curl handler
+
+        // Initialize curl handler.
         $this->ch = curl_init();
     }
 
@@ -126,7 +126,7 @@ class HttpRequest
     public function setOption($name, $value)
     {
         $this->options[$name] = $value;
-    
+
         // make chainable.
         return $this;
     }
@@ -143,7 +143,7 @@ class HttpRequest
             return false;
         }
 
-        // overwrite existing options
+        // Overwrite existing options.
         $this->options = $options;
 
         return $this;
@@ -161,11 +161,11 @@ class HttpRequest
         if (! empty($host)) {
             $this->host = $host;
         }
-        
+
         if (is_numeric($port) && ($port > 0 && $port != 80)) {
             $this->port = $port;
         }
-        
+
         return $this;
     }
 
@@ -180,7 +180,7 @@ class HttpRequest
         if (is_numeric($port) && ($port > 0 && $port != 80)) {
             $this->port = $port;
         }
-        
+
         return $this;
     }
 
@@ -218,12 +218,14 @@ class HttpRequest
      * @param mixed $query
      * @return $this
      */
-    public function addQueryData($query)
+    public function addQueryString($query)
     {
         $query = (is_array($query)) ? http_build_query($query) : $query;
+
         if (! empty($this->requestSetting['query'])) {
             $this->requestSetting['query'] .= '&' . $query;
-        } else {
+        }
+        else {
             $this->requestSetting['query'] = $query;
         }
 
@@ -402,7 +404,7 @@ class HttpRequest
             $this->options[CURLOPT_HEADER] = true;
             $this->options[CURLINFO_HEADER_OUT] = true;
         }
-    
+
         return $this;
     }
 
@@ -418,7 +420,7 @@ class HttpRequest
         if ($enable) {
             $this->options[CURLOPT_NOBODY] = true;
         }
-        
+
         return $this;
     }
 
@@ -469,26 +471,27 @@ class HttpRequest
      */
     protected function prepareRequestUrl()
     {
-        // parse request url.
+        // Parse request url.
         $parts = parse_url($this->requestSetting['url']);
         
         if ($this->port != '' && $this->port > 0) {
             $port = $this->port;
-        } else {
+        }
+        else {
             $port = isset($parts['port']) ? $parts['port'] : false;
         }
 
-        $scheme    = $parts['scheme'];
-        $host    = $parts['host'];
+        $scheme = $parts['scheme'];
+        $host   = $parts['host'];
         $path   = isset($parts['path']) ? $parts['path'] : '';
-        $query    = isset($parts['query']) ? $parts['query'] : '';
+        $query  = isset($parts['query']) ? $parts['query'] : '';
 
         $port or $port = ($scheme == 'https') ? '443' : '80';
 
         if (($scheme == 'https' && $port != '443') || ($scheme == 'http' && $port != '80')) {
             $host = "$host:$port";
 
-            // reassign port
+            // Reassign port.
             $this->port = $port;
         }
 
@@ -500,7 +503,8 @@ class HttpRequest
         // Save query strings.
         if (! empty($this->requestSetting['query'])) {
             $this->requestSetting['query'] = (empty($query) ? '' : $query . '&') . $this->requestSetting['query'];
-        } else {
+        }
+        else {
             $this->requestSetting['query'] = $query;
         }
     }
@@ -514,28 +518,28 @@ class HttpRequest
     {
         $this->prepareRequestUrl();
 
-        // request url
+        // Set request url.
         $this->requestSetting['url'] = empty($this->requestSetting['query']) ?:    
             $this->requestSetting['url'] . '?' . $this->requestSetting['query'];
 
         $this->options[CURLOPT_URL] = $this->requestSetting['url'];
 
-        // referer
+        // Set referer.
         if (isset($this->requestSetting['referer'])) {
             $this->options[CURLOPT_REFERER] = $this->requestSetting['referer'];
         }
 
-        // re-assign useragent
+        // Re-assign useragent.
         if (! empty($this->requestSetting['useragent'])) {
             $this->options[CURLOPT_USERAGENT] = $this->requestSetting['useragent'];
         }
 
-        // request header
+        // Set request header.
         if (! empty($this->requestSetting['header'])) {
             $this->options[CURLOPT_HTTPHEADER] = $this->requestSetting['header'];
         }
 
-        // alternative port to connect.
+        // Set alternative port to connect.
         if (($this->port != '80' && $this->port != '443')) {
             $this->options[CURLOPT_PORT] = $this->port;
         }
@@ -548,10 +552,10 @@ class HttpRequest
      */
     public function send()
     {
-        // prepare request
+        // Prepare request.
         $this->prepareRequest();
 
-        // curl options
+        // Curl options.
         if (! empty($this->options)) {
             curl_setopt_array($this->ch, $this->options);
         }
@@ -560,7 +564,7 @@ class HttpRequest
         $this->response['info'] = curl_getinfo($this->ch);
         $this->response['error'] = curl_error($this->ch);
 
-        // parse response
+        // Parse response.
         $this->parseResponse();
 
         return $this;
@@ -575,12 +579,14 @@ class HttpRequest
     {
         if ($this->response['error']) {
             $this->response['body'] = "cURL Error #:" . $this->response['error'];
-        } else {
+        }
+        else {
             if (isset($this->options[CURLINFO_HEADER_OUT])) {
                 $headerLength = $this->response['info']['header_size'];
                 $this->response['header'] = substr($this->rawResponse, 0, $headerLength);
                 $this->response['body'] = substr($this->rawResponse, $headerLength);
-            } else {
+            }
+            else {
                 $this->response['body'] = $this->rawResponse;
             }
         }
@@ -664,11 +670,11 @@ class HttpRequest
     public function getResponseCookie()
     {
         $cookie = '';
-        
+
         if (isset($this->response['header'])) {
             $cookie = HttpHelper::getCookie($this->response['header']);
         }
-        
+
         return $cookie;
     }
 }

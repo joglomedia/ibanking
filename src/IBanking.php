@@ -89,7 +89,8 @@ class IBanking
     {
         if ($session) {
             return (! empty($this->ib->_session)) ? $this->ib->_session : false;
-        } else {
+        }
+        else {
             return $this->ib->loggedin;
         }
     }
