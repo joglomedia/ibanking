@@ -44,6 +44,6 @@ $mutasi = $ibank->getStatements('24/7/2017', '29/7/2017', 'credit');
 var_dump($mutasi);
 echo("\r\n");
 
-var_dump($ibank->isLoggedin($session=true));
+var_dump($ibank->isLoggedin($session = true));
 
 $ibank->logout();
