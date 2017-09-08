@@ -144,9 +144,7 @@ abstract class AbstractIBParser implements IBParserInterface
 
         // Return array of statement if exists
         foreach ($haystack as $item) {
-            if (($key == 'Credit' && $item[$key] == $needle)
-                || $key == 'Credit' && strstr($item[$key], $needle)
-                || strstr($item[$key], $needle) !== false) {
+            if ($item[$key] == $needle || strstr($item[$key], $needle) || strstr($item[$key], $needle) !== false) {
                 return $item;
             }
         }
