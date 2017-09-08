@@ -135,6 +135,14 @@ class SampleBankParser extends AbstractIBParser
         $statements = [];
 
         // TO DO: get statements data from page scrapping, api, etc
+        $statements[] = [
+            'datetime' => '1/1/2017 00:00:01', // date time of this statement, not mandatory
+            'date' => '1/1/2017',
+            'description' => 'Trf PRMA',
+            'type' => 'CR', // CR = credit, DB = debit
+            'amount' => 100000.00,
+            'balance' => 1000000.00 // final balance of this statement, not mandatory
+        ];
 
         return $statements;
     }
