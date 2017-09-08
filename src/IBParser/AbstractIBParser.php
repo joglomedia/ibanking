@@ -138,16 +138,15 @@ abstract class AbstractIBParser implements IBParserInterface
      */
     public function checkStatement($needle, $key, $haystack)
     {
-        if (! is_array($haystack)) {
+        if (!is_array($haystack)) {
             return [];
         }
 
-        // Return array of statement if exists.
+        // Return array of statement if exists
         foreach ($haystack as $item) {
-            if ($key == 'Credit' && $item[$key] == $needle) {
-                return $item;
-            }
-            elseif (strstr($item[$key], $needle) !== false) {
+            if (($key == 'Credit' && $item[$key] == $needle)
+                || $key == 'Credit' && strstr($item[$key], $needle)
+                || strstr($item[$key], $needle) !== false) {
                 return $item;
             }
         }

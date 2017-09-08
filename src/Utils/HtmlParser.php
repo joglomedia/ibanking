@@ -57,7 +57,7 @@ class HtmlParser
      */
     public function initParser($html = '')
     {
-        $html = ! empty($this->html) ? $this->html : $html;
+        $html = !empty($this->html) ? $this->html : $html;
 
         $previous_value = libxml_use_internal_errors(true);
 
@@ -97,12 +97,10 @@ class HtmlParser
         try {
             if (file_exists($file)) {
                 $this->html = file_get_contents($file);
-            }
-            else {
+            } else {
                 throw new Exception('setHTMLFile ' . $file . ' failed, file does not exist.');
             }
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             echo 'Caught exception: ' .  $e->getMessage();
         }
 
@@ -132,7 +130,7 @@ class HtmlParser
     {
         $html = '';
 
-        if (! is_null($elements)) {
+        if (!is_null($elements)) {
             if (count($elements) > 0) {
                 foreach ($elements as $element) {
                     $html .= $this->dom->saveXML($element) . "\r\n";

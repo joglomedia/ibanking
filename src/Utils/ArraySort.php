@@ -36,11 +36,9 @@ class ArraySort
                 // Do the actual comparison
                 if ($first[$criterion] < $second[$criterion]) {
                     return -1 * $sortOrder;
-                }
-                elseif ($first[$criterion] > $second[$criterion]) {
+                } elseif ($first[$criterion] > $second[$criterion]) {
                     return 1 * $sortOrder;
                 }
-
             }
 
             // Nothing more to compare with, so $first == $second

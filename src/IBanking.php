@@ -106,10 +106,18 @@ class IBanking
         if ($session != '') {
             $this->ib->_session = $session;
             $this->ib->loggedin = true;
-
-            return true;
         }
 
-        return false;
+        return $this->ib->loggedin;
+    }
+
+    /**
+     * Get current cookie session
+     *
+     * @return string
+     */
+    public function getSession()
+    {
+        return $this->ib->_session;
     }
 }

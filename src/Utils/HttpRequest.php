@@ -139,7 +139,7 @@ class HttpRequest
      */
     public function setOptions($options = [])
     {
-        if (! is_array($options)) {
+        if (!is_array($options)) {
             return false;
         }
 
@@ -158,7 +158,7 @@ class HttpRequest
      */
     public function setRequestHost($host = '', $port = 80)
     {
-        if (! empty($host)) {
+        if (!empty($host)) {
             $this->host = $host;
         }
 
@@ -222,10 +222,9 @@ class HttpRequest
     {
         $query = (is_array($query)) ? http_build_query($query) : $query;
 
-        if (! empty($this->requestSetting['query'])) {
+        if (!empty($this->requestSetting['query'])) {
             $this->requestSetting['query'] .= '&' . $query;
-        }
-        else {
+        } else {
             $this->requestSetting['query'] = $query;
         }
 
@@ -476,8 +475,7 @@ class HttpRequest
         
         if ($this->port != '' && $this->port > 0) {
             $port = $this->port;
-        }
-        else {
+        } else {
             $port = isset($parts['port']) ? $parts['port'] : false;
         }
 
@@ -501,10 +499,9 @@ class HttpRequest
         $this->requestSetting['url'] .= $path;
 
         // Save query strings.
-        if (! empty($this->requestSetting['query'])) {
+        if (!empty($this->requestSetting['query'])) {
             $this->requestSetting['query'] = (empty($query) ? '' : $query . '&') . $this->requestSetting['query'];
-        }
-        else {
+        } else {
             $this->requestSetting['query'] = $query;
         }
     }
@@ -530,12 +527,12 @@ class HttpRequest
         }
 
         // Re-assign useragent.
-        if (! empty($this->requestSetting['useragent'])) {
+        if (!empty($this->requestSetting['useragent'])) {
             $this->options[CURLOPT_USERAGENT] = $this->requestSetting['useragent'];
         }
 
         // Set request header.
-        if (! empty($this->requestSetting['header'])) {
+        if (!empty($this->requestSetting['header'])) {
             $this->options[CURLOPT_HTTPHEADER] = $this->requestSetting['header'];
         }
 
@@ -556,7 +553,7 @@ class HttpRequest
         $this->prepareRequest();
 
         // Curl options.
-        if (! empty($this->options)) {
+        if (!empty($this->options)) {
             curl_setopt_array($this->ch, $this->options);
         }
 
@@ -579,14 +576,12 @@ class HttpRequest
     {
         if ($this->response['error']) {
             $this->response['body'] = "cURL Error #:" . $this->response['error'];
-        }
-        else {
+        } else {
             if (isset($this->options[CURLINFO_HEADER_OUT])) {
                 $headerLength = $this->response['info']['header_size'];
                 $this->response['header'] = substr($this->rawResponse, 0, $headerLength);
                 $this->response['body'] = substr($this->rawResponse, $headerLength);
-            }
-            else {
+            } else {
                 $this->response['body'] = $this->rawResponse;
             }
         }

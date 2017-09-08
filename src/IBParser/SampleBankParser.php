@@ -80,7 +80,7 @@ class SampleBankParser extends AbstractIBParser
 
          // TO DO: do login process, get cookie session / login status from IB host, api server, etc
         $this->loggedin = true;
-        
+
         // if logged in, add response cookie to _session (if required)
         if ($this->loggedin) {
             $this->_session = $this->http->getResponseCookie();
@@ -110,9 +110,9 @@ class SampleBankParser extends AbstractIBParser
     {
         // balance
         $balance = 0;
-        
+
         // retry login if logged in status is false
-        if (! $this->loggedin) {
+        if (!$this->loggedin) {
             $this->login();
         }
 
@@ -127,7 +127,7 @@ class SampleBankParser extends AbstractIBParser
     public function getStatements($start = '1/1/2017', $end = '30/1/2017', $type = '%')
     {
         // retry login if logged in status false
-        if (! $this->loggedin) {
+        if (!$this->loggedin) {
             $this->login();
         }
 

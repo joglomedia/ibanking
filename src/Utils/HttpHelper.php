@@ -22,15 +22,13 @@ class HttpHelper
     {
         if (is_array($data)) {
             return array_map(array($this, 'safeEncode'), $data);
-        }
-        elseif (is_scalar($data)) {
+        } elseif (is_scalar($data)) {
             return str_ireplace(
                 array('+', '%7E'),
                 array(' ', '~'),
                 rawurlencode($data)
             );
-        }
-        else {
+        } else {
             return '';
         }
     }
@@ -46,11 +44,9 @@ class HttpHelper
     {
         if (is_array($data)) {
             return array_map(array($this, 'safeDecode'), $data);
-        }
-        elseif (is_scalar($data)) {
+        } elseif (is_scalar($data)) {
             return rawurldecode($data);
-        }
-        else {
+        } else {
             return '';
         }
     }
@@ -106,8 +102,7 @@ class HttpHelper
                     $cookies[$k1] = $v1;
                 }
             }
-        }
-        else {
+        } else {
             // match cookie string
             preg_match_all("#Set-Cookie:\\s+(?<cookie>[^=]+=[^;]+)#m", $headerString, $matches);
             //preg_match_all("#^Set-Cookie: (.*?);#sm", $headerstring, $matches);

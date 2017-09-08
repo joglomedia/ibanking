@@ -13,7 +13,9 @@ class Functions
 {
     public static function generateRandom()
     {
-        return (float)mt_rand()/(float)mt_getrandmax();
+        $random = (float) mt_rand() / (float) mt_getrandmax();
+
+        return $random;
     }
 
     public static function generateRandomString($length = 8, $charset = '')
@@ -26,8 +28,8 @@ class Functions
         $randomString = '';
 
         for ($i = 0; $i < $length; $i++) {
-            //$r = mt_rand()/mt_getrandmax();
-            //$k = (int)floor($r * $b);
+            //$r = mt_rand() / mt_getrandmax();
+            //$k = (int) floor($r * $b);
             //$randomString .= $charset[$k];
             $randomString .= $charset[mt_rand(0, $charsetLength - 1)];
         }
@@ -37,7 +39,7 @@ class Functions
     
     public static function encodeURIComponent($str)
     {
-        $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
+        $revert = array('%21' => '!', '%2A' => '*', '%27' => "'", '%28' => '(', '%29'=>')');
 
         return strtr(rawurlencode($str), $revert);
     }
@@ -47,7 +49,7 @@ class Functions
         $string = trim($string);
         $string = preg_replace('/\s+/', ' ', $string);
         $string = trim($string);
-        
+
         return $string;
     }
 }
