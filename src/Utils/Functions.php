@@ -44,7 +44,7 @@ class Functions
         return strtr(rawurlencode($str), $revert);
     }
     
-    public static function filterWhitespace($string)
+    public static function filterWhiteSpace($string)
     {
         $string = trim($string);
         $string = preg_replace('/\s+/', ' ', $string);
