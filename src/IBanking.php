@@ -88,9 +88,8 @@ class IBanking
     public function isLoggedin($session = false)
     {
         if ($session) {
-            return (! empty($this->ib->_session)) ? $this->ib->_session : false;
-        }
-        else {
+            return (!empty($this->ib->_session)) ? $this->ib->_session : false;
+        } else {
             return $this->ib->loggedin;
         }
     }
