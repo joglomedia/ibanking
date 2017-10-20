@@ -4,7 +4,6 @@ IBanking - Internet Banking
 Internet Banking client wrapper, useful to check internet banking statements (cek mutasi online) using PHP script.
 
 ## Documentation
-
 The documentation is currently under construction.
 
 You can read here:
@@ -12,8 +11,7 @@ You can read here:
 ## Installation
 
 ### Composer
-
-Add _ibank_ library in to your composer.json or create a new composer.json file:
+Add _ibanking_ library in to your composer.json or create a new composer.json file:
 
 ```js
 {
@@ -38,7 +36,6 @@ include('vendor/autoload.php');
 ```
 
 ## Basic Usage
-
 This library is using the PSR-4 standard: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4.md.
 So you can use any autoloader which fits into this standard.
 The tests directory contains an example bootstrap file.
