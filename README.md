@@ -54,24 +54,24 @@ $credentials = [
 	'account'	=> 'nomor_rekening',
 ];
 
-$ibank = new IBanking(new SBParser, $credentials);
+$ibanking = new IBanking(new SBParser, $credentials);
 
-$loggedin = $ibank->login();
+$loggedin = $ibanking->login();
 
 var_dump($loggedin);
 echo("\r\n");
 
-$balance = $ibank->getBalance();
+$balance = $ibanking->getBalance();
 var_dump($balance);
 echo("\r\n");
 
-$mutasi = $ibank->getStatements('24/7/2017', '29/7/2017', 'credit');
+$mutasi = $ibanking->getStatements('24/7/2017', '29/7/2017', 'credit');
 var_dump($mutasi);
 echo("\r\n");
 
-var_dump($ibank->isLoggedin($session=true));
+var_dump($ibanking->isLoggedin($session=true));
 
-$ibank->logout();
+$ibanking->logout();
 ```
 
 For some very simple examples go to the _samples_ directory and have a look at the sample files.
