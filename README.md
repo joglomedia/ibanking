@@ -7,7 +7,7 @@ Internet Banking client wrapper, useful to check internet banking statements (ce
 
 The documentation is currently under construction.
 
-You can read here: https://ibanking.masedi.net/
+You can read here:
 
 ## Installation
 
@@ -79,9 +79,10 @@ $ibank->logout();
 
 For some very simple examples go to the _samples_ directory and have a look at the sample files.
 
-## Found Bug or Suggestions
+## Contribution
+Please send your PR on the Github repository to help improve this script.
 
-Please send your PR on the Github repository.
+## DONATION
+**[Buy Me a Bottle of Milk](https://paypal.me/masedi)**
 
 (c) 2017
-<a href="http://masedi.net/">MasEDI.Net</a>
